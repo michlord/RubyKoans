@@ -14,6 +14,11 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  raise TriangleError if [a,b,c].min <= 0
+  x, y, z = [a,b,c].sort
+  raise TriangleError if x + y <= z
+  #next commented line is cool
+  #[:equilateral,:isosceles,:scalene].fetch([a,b,c].uniq.size - 1)
   if a == b and b == c
 	:equilateral
   elsif (a == b and b != c) or ( a == c and c != b) or ( b == c and c != a)
@@ -21,7 +26,6 @@ def triangle(a, b, c)
   else
 	:scalene
   end
-  
 end
 
 # Error class used in part 2.  No need to change this code.
